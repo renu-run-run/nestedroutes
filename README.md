@@ -1,70 +1,49 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Nested Routes
 
-## Available Scripts
 
-In the project directory, you can run:
+Nested Routes are a powerful feature. While most people think React Router only routes a user from page to page, it also allows one to exchange specific fragments of the view based on the current route. For example, on a user page one gets presented multiple tabs (e.g. Profile, Account) to navigate through a user's information. By clicking these tabs, the URL in the browser will change, but instead of replacing the whole page, only the content of the tab gets replaced.
 
-### `npm start`
+In the following we will recreate this scenario with React Router. To illustrate how this works and how you can implement nested routes step by step in React yourself, we will start off with the following example:
+```javascript
+import { Routes, Route, Link } from 'react-router-dom';
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<Routes>
+         <Route path='/' element={isloggedin ? <Home/> : <Login/>}/>
+         <Route path='/home' element={<Home/>}/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+        <Route path='/Technologies' element={<Protect><Technologies/></Protect>}>
 
-### `npm test`
+           <Route path='' element={<Navigate to="html"/>}/>
+           <Route path='html' element={<Html/>}/>
+           <Route path='css' element={<Css/>}/>
+           <Route path='js' element={<Js/>}/>
+           <Route path='react' element={<React/>}/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+        </Route>
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+        <Route path='/Contact' element={isloggedin ? <Contact/> :       <Navigate to="/" />}/>
+        <Route path='*' element={<NoPageFound/>}/>
+</Routes>
+     
+```
+We will continue working on the Technologies component, because this is the place where we want to have the nested routing via tabs. Therefore, we will instantiate a new set of Link components (which will be our unstyled tabs) which navigate a between the Technologies tabs.
+```javascript
+const Technologies = () =>{
+    return(
+        <>
+           <div className="tech-container">
+              <div className="left-panel">
+                 <Link style={{ color: '#FFF', textDecoration:"none" }} to="html">HTML</Link>
+                 <Link style={{ color: '#FFF', textDecoration:"none" }} to="css">CSS</Link>
+                 <Link style={{ color: '#FFF', textDecoration:"none" }} to="js">JavaScript</Link>
+                 <Link style={{ color: '#FFF', textDecoration:"none" }} to="react">REACT</Link>
+              </div>
+              <div className="right-panel">
+               <Outlet/>
+              </div>
+           </div>
+        </>
+    )
+}
+```
