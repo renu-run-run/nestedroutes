@@ -4,7 +4,7 @@ const Js = () =>{
             <h1 style={{textAlign:"center"}}>JavaScript </h1>
             <div style={{display: "flex", padding:"5px"}}>
                 <div>
-                    <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ZoTSuhoMBJn5lr9aT9v1WrTn-pBSAKSNYTxtxc0oBCS5a1pJaYny_mveQoQ9o8vkA3w&usqp=CAU'} width={250} height={250} />
+                    <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ZoTSuhoMBJn5lr9aT9v1WrTn-pBSAKSNYTxtxc0oBCS5a1pJaYny_mveQoQ9o8vkA3w&usqp=CAU'} alt="js" width={250} height={250} />
                 </div>
                 <div>
                     <dl>

@@ -4,7 +4,7 @@ const Html = () => {
             <h1 style={{textAlign:"center"}}>Html </h1>
             <div style={{display: "flex", padding:"5px"}}>
                 <div>
-                    <img src={'https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_1280.png'} width={250} height={250} />
+                    <img src={'https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_1280.png'} alt="html" width={250} height={250} />
                 </div>
                 <div>
                     <dl>

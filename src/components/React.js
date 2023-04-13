@@ -4,7 +4,7 @@ const React = () =>{
             <h1 style={{textAlign:"center"}}>React</h1>
             <div style={{display: "flex", padding:"5px"}}>
                 <div>
-                    <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png'} width={250} height={250} />
+                    <img src={'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png'} alt="react" width={250} height={250} />
                 </div>
                 <div>
                     <dl>
